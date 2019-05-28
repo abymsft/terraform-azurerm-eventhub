@@ -50,7 +50,17 @@ variable "kafka_enabled"
 
 variable "eventhub_name"
 {
-  description = "(Optional) Is Kafka enabled for the EventHub Namespace? Defaults to false"
-  default = "false"
+  description = "(Required) Specifies the name of the EventHub resource within a namespace. Changing this forces a new resource to be created."
 }
 
+variable "partition_count"
+{
+  description = "(Required) Specifies the current number of shards on the Event Hub. Changing this forces a new resource to be created."
+  type = "number"
+}
+
+variable "message_retention"
+{
+  description = "(Required) Specifies the number of days to retain the events for this Event Hub. Needs to be between 1 and 7 days; or 1 day when using a Basic SKU for the parent EventHub Namespace."
+  type = "number"
+}
