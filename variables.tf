@@ -1,9 +1,56 @@
-variable "raw_string_list" {
-  description = ""
-  default     = ["us-west-1a", "us-west-1b", "us-west-1c"]
+variable "resource_group_name" {
+  description = "Default resource group name where the event hub namespace will be created."
+  default     = "myeventhubns-rg"
 }
 
-variable "permutation_count" {
-  description = ""
-  default     = 1
+variable "namespace_name" {
+  description = "(Required) Specifies the name of the EventHub Namespace resource. Changing this forces a new resource to be created."
 }
+
+variable "location" {
+  description = "The location/region where the event hub namespace will be created. Changing this forces a new resource to be created."
+}
+
+variable "tags" {
+  description = "(Optional) The tags to associate with your eventhub and eventhub namespace."
+  type        = "map"
+
+  default = {
+    tag1 = ""
+    tag2 = ""
+  }
+}
+
+variable "sku" {
+  description = " (Required) Defines which tier to use. Valid options are Basic and Standard. Default value passed is 'Basic' sku"
+  type = "string"
+  default = "Basic"
+}
+
+variable "capacity" {
+  description = "(Optional) Specifies the Capacity / Throughput Units for a Standard SKU namespace. Valid values range from 1 - 20"
+  type = "number"
+}
+
+variable "auto_inflate" {
+  description = "(Optional) Auto-Inflate automatically scales the number of Throughput Units assigned to your Event Hubs Namespace when your traffic exceeds the capacity of the Throughput Units assigned to it. You can specify a limit to which the Namespace will automatically scale."
+  default = "false"
+}
+
+variable "maximum_throughput_units" {
+  description = "(Optional) Specifies the maximum number of throughput units when Auto Inflate is Enabled. Valid values range from 1 - 20"
+  type = "number"
+}
+
+variable "kafka_enabled"
+{
+  description = "(Optional) Is Kafka enabled for the EventHub Namespace? Defaults to false"
+  default = "false"
+}
+
+variable "eventhub_name"
+{
+  description = "(Optional) Is Kafka enabled for the EventHub Namespace? Defaults to false"
+  default = "false"
+}
+
