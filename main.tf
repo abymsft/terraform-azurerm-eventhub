@@ -22,10 +22,38 @@ resource "azurerm_eventhub_namespace" "ehubnamespace" {
   tags                     = "${var.tags}"
 }
 
+resource "azurerm_eventhub_namespace_authorization_rule" "ehub_namespace_auth_rule" {
+  name                = "navi"
+  namespace_name      = "${azurerm_eventhub_namespace.ehubnamespace.name}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
+  listen = "${var.ehub_namspace_authrule_listen}"
+  send   = "${var.ehub_namespace_authrule_send}"
+  manage = "${var.ehub_namespace_authrule_manage}"
+}
+
+
 resource "azurerm_eventhub" "ehub" {
   name                = "${var.eventhub_name}"
   namespace_name      = "${azurerm_eventhub_namespace.ehubnamespace.name}"
   resource_group_name = "${azurerm_resource_group.rg.name}"
   partition_count     = "${var.partition_count}"
   message_retention   = "${var.message_retention}"
+}
+resource "azurerm_eventhub_authorization_rule" "ehub_auth_rule" {
+  name                = "${var.eventhub_authrule_name}"
+  namespace_name      = "${azurerm_eventhub_namespace.ehubnamespace.name}"
+  eventhub_name       = "${azurerm_eventhub.ehub.name}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
+  listen              = "${var.ehub_authrule_listen}"
+  send                = "${var.ehub_authrule_send}"
+  manage              = "${var.ehub_authrule_manage}"
+}
+
+resource "azurerm_eventhub_namespace_authorization_rule" "ehub_namespace_auth_rule" {
+  name                = "navi"
+  namespace_name      = "${azurerm_eventhub_namespace.ehubnamespace.name}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
+  listen = "${var.ehub_namspace_authrule_listen}"
+  send   = "${var.ehub_namespace_authrule_send}"
+  manage = "${var.ehub_namespace_authrule_manage}"
 }

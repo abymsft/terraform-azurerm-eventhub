@@ -64,3 +64,39 @@ variable "message_retention"
   description = "(Required) Specifies the number of days to retain the events for this Event Hub. Needs to be between 1 and 7 days; or 1 day when using a Basic SKU for the parent EventHub Namespace."
   type = "number"
 }
+
+variable "ehub_namspace_authrule_listen"
+{
+  description = "(Optional) Grants listen access to this this Authorization Rule. Defaults to false."
+  default = false
+}
+
+variable "ehub_namespace_authrule_send"
+{
+  description = "(Optional) Grants send access to this this Authorization Rule. Defaults to false."
+  default = false
+}
+
+variable "ehub_namespace_authrule_manage"
+{
+  description = "(Optional) Grants manage access to this this Authorization Rule. When this property is true - both listen and send must be too. Defaults to false."
+  default = false
+}
+
+variable "ehub_authrule_listen"
+{
+  description = "(Optional) Does this Authorization Rule have permissions to Listen to the Event Hub? Defaults to false."
+  default = false
+}
+
+variable "ehub_authrule_send"
+{
+  description = "(Optional) Grants send access to this this Authorization Rule. Defaults to false."
+  default = false
+}
+
+variable "ehub_authrule_manage"
+{
+  description = "(Optional) Grants manage access to this this Authorization Rule. When this property is true - both listen and send must be too. Defaults to false."
+  default = false
+}
