@@ -65,6 +65,12 @@ variable "message_retention"
   type = "number"
 }
 
+var ehub_namespace_authrule_name
+{
+  description = "(Required) Specifies the name of the Authorization Rule. Changing this forces a new resource to be created."
+}
+
+/*NOTE At least one of the 3 permissions below needs to be set. [azurerm_eventhub_namespace_authorization_rule] */
 variable "ehub_namspace_authrule_listen"
 {
   description = "(Optional) Grants listen access to this this Authorization Rule. Defaults to false."
@@ -83,6 +89,12 @@ variable "ehub_namespace_authrule_manage"
   default = false
 }
 
+var ehub_authrule_name
+{
+  description = "(Required) Specifies the name of the EventHub Authorization Rule resource. Changing this forces a new resource to be created."
+}
+
+/*NOTE At least one of the 3 permissions below needs to be set. [azurerm_eventhub_authorization_rule]*/
 variable "ehub_authrule_listen"
 {
   description = "(Optional) Does this Authorization Rule have permissions to Listen to the Event Hub? Defaults to false."
@@ -91,12 +103,22 @@ variable "ehub_authrule_listen"
 
 variable "ehub_authrule_send"
 {
-  description = "(Optional) Grants send access to this this Authorization Rule. Defaults to false."
+  description = "(Optional) Does this Authorization Rule have permissions to Send to the Event Hub? Defaults to false."
   default = false
 }
 
 variable "ehub_authrule_manage"
 {
-  description = "(Optional) Grants manage access to this this Authorization Rule. When this property is true - both listen and send must be too. Defaults to false."
+  description = "(Optional) Does this Authorization Rule have permissions to Manage to the Event Hub? When this property is true - both listen and send must be too. Defaults to false."
   default = false
+}
+
+variable "ehub_consumer_group_name"
+{
+  description = "(Required) Specifies the name of the EventHub Consumer Group resource. Changing this forces a new resource to be created."
+}
+
+variable "ehub_consumer_group_user_metadata"
+{
+  description = "(Optional) Specifies the user metadata."
 }

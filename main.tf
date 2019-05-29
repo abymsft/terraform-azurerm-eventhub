@@ -23,15 +23,13 @@ resource "azurerm_eventhub_namespace" "ehubnamespace" {
 }
 
 resource "azurerm_eventhub_namespace_authorization_rule" "ehub_namespace_auth_rule" {
-  name                = "navi"
+  name                = "${var.ehub_namespace_authrule_name}"
   namespace_name      = "${azurerm_eventhub_namespace.ehubnamespace.name}"
   resource_group_name = "${azurerm_resource_group.rg.name}"
-  listen = "${var.ehub_namspace_authrule_listen}"
-  send   = "${var.ehub_namespace_authrule_send}"
-  manage = "${var.ehub_namespace_authrule_manage}"
+  listen              = "${var.ehub_namspace_authrule_listen}"
+  send                = "${var.ehub_namespace_authrule_send}"
+  manage              = "${var.ehub_namespace_authrule_manage}"
 }
-
-
 resource "azurerm_eventhub" "ehub" {
   name                = "${var.eventhub_name}"
   namespace_name      = "${azurerm_eventhub_namespace.ehubnamespace.name}"
@@ -40,7 +38,7 @@ resource "azurerm_eventhub" "ehub" {
   message_retention   = "${var.message_retention}"
 }
 resource "azurerm_eventhub_authorization_rule" "ehub_auth_rule" {
-  name                = "${var.eventhub_authrule_name}"
+  name                = "${var.ehub_authrule_name}"
   namespace_name      = "${azurerm_eventhub_namespace.ehubnamespace.name}"
   eventhub_name       = "${azurerm_eventhub.ehub.name}"
   resource_group_name = "${azurerm_resource_group.rg.name}"
@@ -48,12 +46,10 @@ resource "azurerm_eventhub_authorization_rule" "ehub_auth_rule" {
   send                = "${var.ehub_authrule_send}"
   manage              = "${var.ehub_authrule_manage}"
 }
-
-resource "azurerm_eventhub_namespace_authorization_rule" "ehub_namespace_auth_rule" {
-  name                = "navi"
+resource "azurerm_eventhub_consumer_group" "ehub_consumer_group" {
+  name                = "${var.ehub_consumer_group_name}"
   namespace_name      = "${azurerm_eventhub_namespace.ehubnamespace.name}"
+  eventhub_name       = "${azurerm_eventhub.ehub.name}"
   resource_group_name = "${azurerm_resource_group.rg.name}"
-  listen = "${var.ehub_namspace_authrule_listen}"
-  send   = "${var.ehub_namespace_authrule_send}"
-  manage = "${var.ehub_namespace_authrule_manage}"
+  user_metadata       = "${var.ehub_consumer_group_user_metadata}"
 }
