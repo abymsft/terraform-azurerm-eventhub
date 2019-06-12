@@ -28,8 +28,7 @@ variable "sku" {
 }
 
 variable "capacity" {
-  description = "(Optional) Specifies the Capacity / Throughput Units for a Standard SKU namespace. Valid values range from 1 - 20"
-  type = "number"
+  description = "(Optional) Specifies the Capacity / Throughput Units for a Standard SKU namespace. Valid values range from 1 - 20."
 }
 
 variable "auto_inflate" {
@@ -39,7 +38,6 @@ variable "auto_inflate" {
 
 variable "maximum_throughput_units" {
   description = "(Optional) Specifies the maximum number of throughput units when Auto Inflate is Enabled. Valid values range from 1 - 20"
-  type = "number"
 }
 
 variable "kafka_enabled"
