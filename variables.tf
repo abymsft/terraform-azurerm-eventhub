@@ -23,8 +23,8 @@ variable "tags" {
 
 variable "sku" {
   description = " (Required) Defines which tier to use. Valid options are Basic and Standard. Default value passed is 'Basic' sku"
-  type = "string"
-  default = "Basic"
+  type        = "string"
+  default     = "Basic"
 }
 
 variable "capacity" {
@@ -33,90 +33,74 @@ variable "capacity" {
 
 variable "auto_inflate" {
   description = "(Optional) Auto-Inflate automatically scales the number of Throughput Units assigned to your Event Hubs Namespace when your traffic exceeds the capacity of the Throughput Units assigned to it. You can specify a limit to which the Namespace will automatically scale."
-  default = "false"
+  default     = "false"
 }
 
 variable "maximum_throughput_units" {
   description = "(Optional) Specifies the maximum number of throughput units when Auto Inflate is Enabled. Valid values range from 1 - 20"
 }
 
-variable "kafka_enabled"
-{
+variable "kafka_enabled" {
   description = "(Optional) Is Kafka enabled for the EventHub Namespace? Defaults to false"
-  default = "false"
+  default     = "false"
 }
 
-variable "eventhub_name"
-{
+variable "eventhub_name" {
   description = "(Required) Specifies the name of the EventHub resource within a namespace. Changing this forces a new resource to be created."
 }
 
-variable "partition_count"
-{
+variable "partition_count" {
   description = "(Required) Specifies the current number of shards on the Event Hub. Changing this forces a new resource to be created."
-  type = "number"
 }
 
-variable "message_retention"
-{
+variable "message_retention" {
   description = "(Required) Specifies the number of days to retain the events for this Event Hub. Needs to be between 1 and 7 days; or 1 day when using a Basic SKU for the parent EventHub Namespace."
-  type = "number"
 }
 
-var ehub_namespace_authrule_name
-{
+variable ehub_namespace_authrule_name {
   description = "(Required) Specifies the name of the Authorization Rule. Changing this forces a new resource to be created."
 }
 
 /*NOTE At least one of the 3 permissions below needs to be set. [azurerm_eventhub_namespace_authorization_rule] */
-variable "ehub_namspace_authrule_listen"
-{
+variable "ehub_namspace_authrule_listen" {
   description = "(Optional) Grants listen access to this this Authorization Rule. Defaults to false."
-  default = false
+  default     = false
 }
 
-variable "ehub_namespace_authrule_send"
-{
+variable "ehub_namespace_authrule_send" {
   description = "(Optional) Grants send access to this this Authorization Rule. Defaults to false."
-  default = false
+  default     = false
 }
 
-variable "ehub_namespace_authrule_manage"
-{
+variable "ehub_namespace_authrule_manage" {
   description = "(Optional) Grants manage access to this this Authorization Rule. When this property is true - both listen and send must be too. Defaults to false."
-  default = false
+  default     = false
 }
 
-var ehub_authrule_name
-{
+variable ehub_authrule_name {
   description = "(Required) Specifies the name of the EventHub Authorization Rule resource. Changing this forces a new resource to be created."
 }
 
 /*NOTE At least one of the 3 permissions below needs to be set. [azurerm_eventhub_authorization_rule]*/
-variable "ehub_authrule_listen"
-{
+variable "ehub_authrule_listen" {
   description = "(Optional) Does this Authorization Rule have permissions to Listen to the Event Hub? Defaults to false."
-  default = false
+  default     = false
 }
 
-variable "ehub_authrule_send"
-{
+variable "ehub_authrule_send" {
   description = "(Optional) Does this Authorization Rule have permissions to Send to the Event Hub? Defaults to false."
-  default = false
+  default     = false
 }
 
-variable "ehub_authrule_manage"
-{
+variable "ehub_authrule_manage" {
   description = "(Optional) Does this Authorization Rule have permissions to Manage to the Event Hub? When this property is true - both listen and send must be too. Defaults to false."
-  default = false
+  default     = false
 }
 
-variable "ehub_consumer_group_name"
-{
+variable "ehub_consumer_group_name" {
   description = "(Required) Specifies the name of the EventHub Consumer Group resource. Changing this forces a new resource to be created."
 }
 
-variable "ehub_consumer_group_user_metadata"
-{
+variable "ehub_consumer_group_user_metadata" {
   description = "(Optional) Specifies the user metadata."
 }

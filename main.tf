@@ -1,10 +1,3 @@
-# provider "azurerm" {
-#   subscription_id = "REPLACE-WITH-YOUR-SUBSCRIPTION-ID"
-#   client_id       = "REPLACE-WITH-YOUR-CLIENT-ID"
-#   client_secret   = "REPLACE-WITH-YOUR-CLIENT-SECRET"
-#   tenant_id       = "REPLACE-WITH-YOUR-TENANT-ID"
-# }
-
 resource "azurerm_resource_group" "rg" {
   name     = "${var.resource_group_name}"
   location = "${var.location}"
@@ -30,6 +23,7 @@ resource "azurerm_eventhub_namespace_authorization_rule" "ehub_namespace_auth_ru
   send                = "${var.ehub_namespace_authrule_send}"
   manage              = "${var.ehub_namespace_authrule_manage}"
 }
+
 resource "azurerm_eventhub" "ehub" {
   name                = "${var.eventhub_name}"
   namespace_name      = "${azurerm_eventhub_namespace.ehubnamespace.name}"
@@ -37,6 +31,7 @@ resource "azurerm_eventhub" "ehub" {
   partition_count     = "${var.partition_count}"
   message_retention   = "${var.message_retention}"
 }
+
 resource "azurerm_eventhub_authorization_rule" "ehub_auth_rule" {
   name                = "${var.ehub_authrule_name}"
   namespace_name      = "${azurerm_eventhub_namespace.ehubnamespace.name}"
@@ -46,6 +41,7 @@ resource "azurerm_eventhub_authorization_rule" "ehub_auth_rule" {
   send                = "${var.ehub_authrule_send}"
   manage              = "${var.ehub_authrule_manage}"
 }
+
 resource "azurerm_eventhub_consumer_group" "ehub_consumer_group" {
   name                = "${var.ehub_consumer_group_name}"
   namespace_name      = "${azurerm_eventhub_namespace.ehubnamespace.name}"

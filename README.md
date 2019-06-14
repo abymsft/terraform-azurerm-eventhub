@@ -1,4 +1,6 @@
-# My new created Terraform module
+[![Build Status](https://dev.azure.com/msapmdemo/TFSandbox/_apis/build/status/terraform-azurerm-eventhub?branchName=azurerm_eventhub_namespace)](https://dev.azure.com/msapmdemo/TFSandbox/_build/latest?definitionId=23&branchName=azurerm_eventhub_namespace)
+
+# Event Hub Terraform module
 
 Introduce your module briefly.
 

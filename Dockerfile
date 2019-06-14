@@ -2,7 +2,7 @@
 ARG BUILD_TERRAFORM_VERSION=0.11.7
 FROM microsoft/terraform-test:${BUILD_TERRAFORM_VERSION}
 
-ARG MODULE_NAME="terraform-azurerm-postgresql"
+ARG MODULE_NAME="terraform-azurerm-eventhub"
 
 # Set work directory
 RUN mkdir -p /go/src/${MODULE_NAME}
@@ -15,4 +15,6 @@ ENV PATH $GOPATH/bin:$PATH
 RUN /bin/bash -c "curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh"
 
 COPY . /go/src/${MODULE_NAME}
-RUN chmod 744 test.sh
+RUN chmod 755 test.sh
+RUN apt-get install dos2unix
+RUN dos2unix test.sh
